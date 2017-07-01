@@ -18,7 +18,7 @@ public class Zadacha11 {
 		for(int i=tries;i>=1;i--){
 			System.out.println("Enter character:"+ i);
 			char ch=sc.nextLine().charAt(0);
-			checkLetter(ch,secretWord,revealingWord);
+			if(checkLetter(ch,secretWord,revealingWord)) i++;
 				for(int a=0;a<revealingWord.length;a++){
 					if(revealingWord[a]==0){
 					System.out.print("_");
@@ -30,11 +30,14 @@ public class Zadacha11 {
 	}
 		sc.close();
 	}
-	static void checkLetter(char ch,char[] arr,char[] arr2){
+	static boolean checkLetter(char ch,char[] arr,char[] arr2){
+		boolean bol=false;
 		for(int i=0;i<arr.length;i++){
 			if(arr[i]==ch){
 				arr2[i]=ch;
+				bol=true;
 			}
 		}
+		return bol;
 	}
 }
