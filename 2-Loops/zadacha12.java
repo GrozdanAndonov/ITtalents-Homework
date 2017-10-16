@@ -10,6 +10,7 @@ public class zadacha12 {
 		int part3=0;
 		for(int i=100;i<=999;i++){			
 			 part1=i/100%10;
+			
 			 part2=i/10%10;
 			 part3=i%10;
 			if(part1!=part2 && part1!=part3 && part2!=part3){
