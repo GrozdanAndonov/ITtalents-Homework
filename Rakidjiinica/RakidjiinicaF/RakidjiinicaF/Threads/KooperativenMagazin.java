@@ -52,11 +52,11 @@ public class KooperativenMagazin {
 				System.out.println("Error:"+e.getMessage());
 			}
 		}
-		mutex.notifyAll();
 		this.quantityRakiq-=quantity;
 		this.outcomeRakia+=quantity;
 		System.out.println(Thread.currentThread().getName()+" get "+quantity+" RAKIA!");
 		System.out.println("RAKIA - "+this.quantityRakiq);
+		mutex.notifyAll();
 		 }
 	}
 	
@@ -69,12 +69,12 @@ public class KooperativenMagazin {
 				System.out.println("Error:"+e.getMessage());
 			}
 		}
-		mutex.notifyAll();
 		this.quantityRakiq+=quantity;
 		this.incomeRakia+=quantity;
 		System.out.println(Thread.currentThread().getName()+" added "+quantity+" RAKIA!");
 		System.out.println("RAKIA - "+this.quantityRakiq);
-		 }
+		mutex.notifyAll();
+		}
 	}
 	
 synchronized public void getJarsKompot(int quantity){
@@ -86,11 +86,11 @@ synchronized public void getJarsKompot(int quantity){
 				System.out.println("Error:"+e.getMessage());
 			}
 		}
-		notifyAll();
 		this.quantityKompot-=quantity;
 		this.outcomeKompot+=quantity;
 		System.out.println(Thread.currentThread().getName()+" get "+quantity+" KOMPOT!");
 		System.out.println("KOMPOT - "+this.quantityKompot);
+		notifyAll();
 	}
 	
 	synchronized public void addJarsKompot(int quantity){
@@ -102,10 +102,10 @@ synchronized public void getJarsKompot(int quantity){
 				System.out.println("Error:"+e.getMessage());
 			}
 		}
-		notifyAll();
 		this.quantityKompot+=quantity;
 		this.incomeKompot+=quantity;
 		System.out.println(Thread.currentThread().getName()+" added "+quantity+" KOMPOT!");
 		System.out.println("KOMPOT - "+this.quantityKompot);
+		notifyAll();
 	}
 }
