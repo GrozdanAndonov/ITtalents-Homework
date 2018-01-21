@@ -48,11 +48,11 @@ public class StuklarskiCeh {
 		while(this.quantityBottles+quantity>StuklarskiCeh.MAX_CAPACITY_BOTTLES){
 			wait();
 		}
-		notifyAll();
 		this.quantityBottles+=quantity;
 		this.incomeBottles+=quantity;
 		System.out.println(Thread.currentThread().getName()+" added "+quantity +" BOTTLES!");
 		System.out.println("Current quantity bottles: "+this.quantityBottles + "------BOTTLES");
+		notifyAll();
 	}
 	
 	 public void addJars(int quantity) throws InterruptedException{
@@ -60,11 +60,11 @@ public class StuklarskiCeh {
 			while(this.quantityJars+quantity>StuklarskiCeh.MAX_CAPACITY_JARS){
 				mutex.wait();
 			}
-			mutex.notifyAll();
 			this.quantityJars+=quantity;
 			this.incomeJars+=quantity;
 			System.out.println(Thread.currentThread().getName()+" added "+quantity +" JARS!");
 			System.out.println("Current quantity bottles: "+this.quantityJars + "-------JARS");
+			mutex.notifyAll();
 			}
 		}
 		
@@ -74,11 +74,11 @@ public class StuklarskiCeh {
 			while(this.quantityBottles-quantity<0){
 				wait();
 			}
-			notifyAll();
 			this.quantityBottles-=quantity;
 			this.outcomeBottles+=quantity;
 			System.out.println(Thread.currentThread().getName()+" get "+quantity +" BOTTLES!");
 			System.out.println("Current quantity bottles: "+this.quantityBottles + "------BOTTLES");
+			notifyAll();
 		}
 	
 	 public void getJars(int quantity){
@@ -92,11 +92,11 @@ public class StuklarskiCeh {
 						System.out.println("Error:"+e.getMessage());
 				}
 			}
-				mutex.notifyAll();
 				this.quantityJars-=quantity;
 				this.outcomeJars+=quantity;
 				System.out.println(Thread.currentThread().getName()+" get "+ quantity + " JARS!");
 				System.out.println("Current quantity bottles: " + this.quantityJars);
+				mutex.notifyAll();
 		}
 	}
 }
