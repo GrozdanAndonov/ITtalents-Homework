@@ -32,14 +32,13 @@ public class Bidon {
 		while(this.quantityGrozde+kgGrozde>Bidon.MAX_CAPACITY){
 			wait();
 		}
-		notifyAll();
 		this.quantityGrozde+=kgGrozde;
 		this.income+=kgGrozde;
 		System.out.println(Thread.currentThread().getName()+" added:"+kgGrozde+"kgGrozde!");	
 		System.out.println("Current capacity:"+this.quantityGrozde+"--------GROZDE");
+		notifyAll();
 	}
-	
-	
+		
 	synchronized public int getGrozde(int kgGrozde){
 		while(this.quantityGrozde<kgGrozde){
 			try {
@@ -48,13 +47,11 @@ public class Bidon {
 					System.out.println("Error:"+e.getMessage());
 			}
 		}
-		notifyAll();
 		this.quantityGrozde-= kgGrozde;
 		this.outcome+=kgGrozde;
 		System.out.println(Thread.currentThread().getName()+" get "+kgGrozde+"kg grozde!");
 		System.out.println("Current capacity:"+this.quantityGrozde+"--------GROZDE");
-		return kgGrozde;
-		
+		notifyAll();
+		return kgGrozde;	
 	}
-	
 }
