@@ -34,11 +34,11 @@ public class ZavodZahar {
 					System.out.println("Error:"+e.getMessage());
 			}
 		}
-		notifyAll();
 		this.quantity-=quantity;
 		this.outcomeSugar+=quantity;
 		System.out.println(Thread.currentThread().getName()+" get "+quantity+" SUGAR!");
 		System.out.println("Current capacity:"+this.quantity+"------- SUGAR");
+		notifyAll();
 	}
 		
 	public synchronized void addShugar(int quantity) throws InterruptedException{
@@ -46,9 +46,9 @@ public class ZavodZahar {
 		while(this.quantity+quantity>ZavodZahar.MAX_CAPACITY){
 			wait();
 		}
-		notifyAll();
 		this.quantity+=quantity;
 		this.incomeTrustika+=quantity;
 		System.out.println(Thread.currentThread().getName()+" added "+quantity+"SUGAR!");	
+		notifyAll();
 	}
 }
