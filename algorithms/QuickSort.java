@@ -23,7 +23,9 @@ public class QuickSort {
 	
 	static int partition(int[] arr, int left, int right){
 		//izbirame pivot
-		int pivot = arr[right];
+		int pivot = arr[(int) ((Math.random() * (right - left + 1)) + left)]; //arr[right]
+		swap(arr, right, pivot);
+		pivot = right;
 		//minavame vsichki elementi i sravnqvame elementite s pivota
 		int index = left;
 		for (int i = left; i < right; i++) {	
